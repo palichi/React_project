@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LectureGoalList from "./components/LectureGoalList";
+import Timer from "./components/Timer";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -29,6 +30,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <Timer expireDate={"2018-07-05T17:00+09:00"} />
         <LectureGoalList items={goals} title="강의목표!!!" />;
       </div>
     );

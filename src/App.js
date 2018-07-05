@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import LectureGoalList from "./components/LectureGoalList";
 import Todos from "./components/Todos";
 import Timer from "./components/Timer";
+import Header from "./components/Header";
+import AsyncState from "./components/AsyncState";
 import logo from "./logo.svg";
 import "./App.css";
 import "antd/dist/antd.css";
@@ -47,15 +49,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img
-            onClick={this.handleClick}
-            src={logo}
-            className="App-logo"
-            alt="logo"
-          />
-          <h1 className="App-title">Welcome to React!!!</h1>
-        </header>
+        <Header />
+        <AsyncState />
+
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

@@ -17,16 +17,33 @@ const goals = [
 
 class App extends Component {
   state = {
-    isExpired: false
+    isExpired: false,
+    dateState: "2018-07-04T16:00:00+09:00"
   };
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleComplete = () => {
     this.setState({ isExpired: true });
     console.log("타이머로 부터 호출 받음...");
   };
 
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        count: this.state.count + 1
+      });
+    }, 1000);
+  }
+
   render() {
-    const { isExpired } = this.state;
+    console.log("부모 랜더.. ");
+    //const isExpired = moment("2018-07-04T16:00:00+09:00") <moment();
+
+    const { isExpired, dateStr } = this.state;
 
     return (
       <div className="App">
@@ -47,13 +64,17 @@ class App extends Component {
 
         {!isExpired && (
           <Timer
-            expireDate={"2018-07-04T16:30+09:00"}
-            onComplete={this.handleComplete}
+            key={dateStr}
+            expireDate={dateStr}
+            // onComplete={this.handleComplete}
+            onComplete={e => this.handleClick(e, isExpired)}
           />
         )}
       </div>
     );
   }
+
+  handleClick(e, isExpired) {}
 }
 
 export default App;

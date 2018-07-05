@@ -1,45 +1,47 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import moment from "moment";
 import "moment/locale/ko";
 moment.locale("ko");
 
-const TIME_FORMAT = "A h:mm";
+const TIME_FORMAT = "A h:mm:ss";
 
-class Timer extends Component {
+class Timer extends PureComponent {
   constructor(props) {
-    console.log("1111", props);
+    console.log("constructor: 타이머 생성");
     super(props);
 
     this.state = {
-      date: moment()
+      date: moment(),
+      expireDate: props.expireDate
     };
 
-    this.nTimer = setInterval(() => {
-      this.setState({
-        date: moment()
-      });
-    }, 1000);
+    this.date = moment();
+    //    this.nTimer = setInterval(() => {
+    //      this.setState({
+    //        date: moment()
+    //      });
+    //    }, 1000);
 
     console.log("6666666", this.props.expireDate);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      this.state.date.format(TIME_FORMAT) === nextState.date.format(TIME_FORMAT)
-    )
-      return false;
-    else return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (
+  //     this.state.date.format(TIME_FORMAT) === nextState.date.format(TIME_FORMAT)
+  //   )
+  //     return false;
+  //   else return true;
+  // }
 
   render() {
-    console.log("rendering...");
-    const { expireDate, onComplete } = this.props;
-    const { date } = this.state;
+    console.log("자식 rendering...");
+    const { onComplete } = this.props;
+    const { expireDate, date } = this.state;
 
     if (moment(expireDate) < date) {
-      setTimeout(() => {
-        onComplete && onComplete();
-      }, 1000);
+      //      setTimeout(() => {
+      //        onComplete && onComplete();
+      //      }, 1000);
 
       return <div>종료 되었습니다.</div>;
     }
